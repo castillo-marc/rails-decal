@@ -1,0 +1,24 @@
+<h1> Hello from cities/view </h1>
+
+<% if (not @city.nil?) && City.all.key?(@city.to_sym) %>
+  <h1> City: <%= @city %> </h1>
+  <p> Population: <%= City.all[@city.to_sym].population %> </p>
+  <p> Landmark: <%= City.all[@city.to_sym].landmark %> </p>
+  <p>Weather: <%= City.all[@city.to_sym].weather[:temperature] %> in Kelvins I think </p>
+<% else %>
+  <% if not @city.nil? %>
+    <h1> That city doesn't exist yet so I'm showing all the ones that do: </h1>
+  <% end %>
+  <% if not City.all.empty? %>
+    <% City.all.each do |c| %>
+      <% if not c.nil? %>
+        <h1> City: <%= c[0] %></h1>
+        <p> Population: <%= City.all[c[0].to_sym].population %> </p>
+        <p> Landmark: <%= City.all[c[0].to_sym].landmark %> </p>
+        <p>  Weather: <%= City.all[c[0].to_sym].weather[:temperature] %>  in Kelvins I think </p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h1> Make at least one city first at cities/new </h1>
+  <% end %>
+<% end %>

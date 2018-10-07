@@ -1,0 +1,29 @@
+<!-- Your code here -->
+<% if not @name.nil? %>
+  <h1>Hello, <%= @name %></h1>
+<% else %>
+<h1>Hello World!</h1>
+<% end %>
+
+<% if not @w.nil? %>
+  <h1><%= @w[:city]%></h1>
+  <p>
+    It's <%= @temperature %> degrees F
+    and it looks like <%= @w[:description] %>
+  </p>
+<% end %>
+
+<%= form_with local: true, method: "get" do |f|%>
+  <%= f.text_field :city %>
+  <%= f.submit %>
+<% end %>
+
+<% City.all.each do |c| %>
+<% if not c.nil? %>
+  <h1> <%= c[0] %> </h1>
+  <p>
+    It's <%= (9/5)*(City.all[c[0].to_sym].weather[:temperature] - 273) + 32 %> degrees F
+    and it looks like <%= City.all[c[0].to_sym].weather[:description] %>
+  </p>
+<% end %>
+<% end %>

@@ -1,0 +1,8 @@
+<h1> Hello from cities/new </h1>
+
+<%= form_with local: true, url: "/cities/create", method: "post" do |f| %>
+City: <%= f.text_field :city %>
+Population: <%= f.text_field :population %>
+Most Famous Landmark: <%= f.text_field :landmark %>
+<%= f.submit %>
+<% end %>
